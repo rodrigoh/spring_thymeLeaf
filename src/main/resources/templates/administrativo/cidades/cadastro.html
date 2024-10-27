@@ -37,29 +37,28 @@
     </div>
 </nav>
 <div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sigla</th>
-            <th>Ação</th>
-            <th>Opções</th>
-        </tr>
-        </thead>
-        <tbody th:each="estado : ${listaEstados}">
-        <tr>
-            <td th:text="${estado.id}"></td>
-            <td th:text="${estado.nome}"></td>
-            <td th:text="${estado.sigla}"></td>
-            <td>
-                <a th:href="@{/editarEstado/{id}(id=${estado.id})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                <a th:href="@{/removerEstado/{id}(id=${estado.id})}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a class="btn btn-danger" href="/administrativo">Voltar</a>
+    <form action="/salvarCidade" th:object="${cidade}" method="POST">
+        <input type="hidden" id="id" name="id" th:field="*{id}"
+               readonly="true">
+        <div class="form-group">
+            <label for="nome">Nome cidade</label>
+            <input type="text" class="form-control" id="nome" placeholder="Taquara" required th:field="*{nome}">
+        </div>
+        <div class="form-group">
+            <label for="cep">CEP</label>
+            <input type="text" class="form-control" id="cep" placeholder="95600000" required th:field="*{cep}">
+        </div>
+        <div class="form-group">
+            <label for="estado">UF</label>
+            <select th:field="*{estado}" class="form-control" id="estado">
+                <option th:each="est:${listaEstados}" th:value="${est.id}" th:text="${est.nome}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-danger" href="/administrativo">Voltar</a>
+        </div>
+    </form>
 </div>
 
 <!-- JavaScript (Opcional) -->

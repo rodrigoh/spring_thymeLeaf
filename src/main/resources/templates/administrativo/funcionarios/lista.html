@@ -36,25 +36,41 @@
         </form>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Sigla</th>
-            <th>Ação</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Bairro</th>
+            <th>E-mail</th>
+            <th>Função</th>
+            <th>Cidade</th>
+            <th>Estado</th>
             <th>Opções</th>
+
         </tr>
         </thead>
-        <tbody th:each="estado : ${listaEstados}">
+        <tbody th:each="funcionario : ${listaFuncionarios}">
         <tr>
-            <td th:text="${estado.id}"></td>
-            <td th:text="${estado.nome}"></td>
-            <td th:text="${estado.sigla}"></td>
+            <td th:text="${funcionario.id}"></td>
+            <td th:text="${funcionario.nome}"></td>
+            <td th:text="${funcionario.cpf}"></td>
+            <td th:text="${funcionario.telefone}"></td>
+            <td th:text="${funcionario.endereco}"></td>
+            <td th:text="${funcionario.bairro}"></td>
+            <td th:text="${funcionario.eMail}"></td>
+            <td th:text="${funcionario.funcao}"></td>
+            <td th:text="${funcionario.cidade.nome}"></td>
+            <td th:text="${funcionario.cidade.estado.sigla}"></td>
             <td>
-                <a th:href="@{/editarEstado/{id}(id=${estado.id})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                <a th:href="@{/removerEstado/{id}(id=${estado.id})}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                <a th:href="@{/editarfuncionario/{id}(id=${funcionario.id})}"
+                   class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                <a th:href="@{/removerfuncionario/{id}(id=${funcionario.id})}"
+                   class="btn btn-danger"><i class="bi bi-trash"></i></a>
             </td>
         </tr>
         </tbody>

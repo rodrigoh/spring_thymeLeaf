@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="estado")
 public class Estado implements Serializable {
-  private static final Long serilVersionUID = 1L;
+  private static final Long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

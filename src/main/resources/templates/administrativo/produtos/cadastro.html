@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br"
       xmlns:th="https://thymeLeaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeLeaf/Layout" xmlns="http://www.w3.org/1999/html"
->
+      xmlns:layout="http://www.ultraq.net.nz/thymeLeaf/Layout" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
@@ -37,29 +36,49 @@
     </div>
 </nav>
 <div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sigla</th>
-            <th>Ação</th>
-            <th>Opções</th>
-        </tr>
-        </thead>
-        <tbody th:each="estado : ${listaEstados}">
-        <tr>
-            <td th:text="${estado.id}"></td>
-            <td th:text="${estado.nome}"></td>
-            <td th:text="${estado.sigla}"></td>
-            <td>
-                <a th:href="@{/editarEstado/{id}(id=${estado.id})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                <a th:href="@{/removerEstado/{id}(id=${estado.id})}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a class="btn btn-danger" href="/administrativo">Voltar</a>
+    <form action="/salvarProduto" th:object="${produto}" method="POST">
+        <input type="hidden" id="id" name="id" th:field="*{id}" readonly="true">
+        <div class="form-group">
+            <label for="nome">Nome produto</label>
+            <input type="text" class="form-control" id="nome" required th:field="*{nome}">
+        </div>
+        <div class="form-group">
+            <label for="codigoBarras">Código barras</label>
+            <input type="text" class="form-control" id="codigoBarras" required th:field="*{codigoBarras}">
+        </div>
+        <div class="form-group">
+            <label for="unidadeMedida">Unidade medida</label>
+            <input type="text" class="form-control" id="unidadeMedida" required
+                   th:field="*{unidadeMedida}">
+        </div>
+        <div class="row form-group">
+            <div class="col">
+                <label for="estoque">Quant. estoque</label>
+                <input type="number" class="form-control" id="estoque" required th:field="*{estoque}">
+            </div>
+            <div class="col">
+                <label for="precoCusto">Preço de custo</label>
+                <input type="number" class="form-control" id="precoCusto" required th:field="*{precoCusto}">
+            </div>
+            <div class="col">
+                <label for="precoVenda">Preço de venda</label>
+                <input type="number" class="form-control" id="precoVenda" required th:field="*{precoVenda}">
+            </div>
+            <div class="col">
+                <label for="lucro">Lucro</label>
+                <input type="number" class="form-control" id="lucro" required th:field="*{lucro}">
+            </div>
+            <div class="col">
+                <label for="margemLucro">Margem lucro</label>
+                <input type="number" class="form-control" id="margemLucro" required th:field="*{margemLucro}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-danger" href="/administrativo">Voltar</a>
+        </div>
+    </form>
 </div>
 
 <!-- JavaScript (Opcional) -->

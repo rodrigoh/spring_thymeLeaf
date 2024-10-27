@@ -36,25 +36,38 @@
         </form>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Sigla</th>
-            <th>Ação</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Bairro</th>
+            <th>E-mail</th>
+            <th>Cidade</th>
+            <th>Estado</th>
             <th>Opções</th>
         </tr>
         </thead>
-        <tbody th:each="estado : ${listaEstados}">
+        <tbody th:each="cliente : ${listaClientes}">
         <tr>
-            <td th:text="${estado.id}"></td>
-            <td th:text="${estado.nome}"></td>
-            <td th:text="${estado.sigla}"></td>
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nome}"></td>
+            <td th:text="${cliente.cpf}"></td>
+            <td th:text="${cliente.telefone}"></td>
+            <td th:text="${cliente.endereco}"></td>
+            <td th:text="${cliente.bairro}"></td>
+            <td th:text="${cliente.eMail}"></td>
+            <td th:text="${cliente.cidade.nome}"></td>
+            <td th:text="${cliente.cidade.estado.sigla}"></td>
             <td>
-                <a th:href="@{/editarEstado/{id}(id=${estado.id})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                <a th:href="@{/removerEstado/{id}(id=${estado.id})}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                <a th:href="@{/editarCliente/{id}(id=${cliente.id})}"
+                   class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                <a th:href="@{/removerCliente/{id}(id=${cliente.id})}"
+                   class="btn btn-danger"><i class="bi bi-trash"></i></a>
             </td>
         </tr>
         </tbody>

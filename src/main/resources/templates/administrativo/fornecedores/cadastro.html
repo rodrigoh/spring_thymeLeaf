@@ -37,29 +37,49 @@
     </div>
 </nav>
 <div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sigla</th>
-            <th>Ação</th>
-            <th>Opções</th>
-        </tr>
-        </thead>
-        <tbody th:each="estado : ${listaEstados}">
-        <tr>
-            <td th:text="${estado.id}"></td>
-            <td th:text="${estado.nome}"></td>
-            <td th:text="${estado.sigla}"></td>
-            <td>
-                <a th:href="@{/editarEstado/{id}(id=${estado.id})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                <a th:href="@{/removerEstado/{id}(id=${estado.id})}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a class="btn btn-danger" href="/administrativo">Voltar</a>
+    <form action="/salvarFornecedor" th:object="${fornecedor}" method="POST">
+        <input type="hidden" id="id" name="id" th:field="*{id}"
+               readonly="true">
+        <div class="form-group">
+            <label for="nome">Nome fornecedor</label>
+            <input type="text" class="form-control" id="nome" placeholder="Jonas Silva" required th:field="*{nome}">
+        </div>
+        <div class="form-group">
+            <label for="cnpj">CNPJ</label>
+            <input type="text" class="form-control" id="cnpj" required th:field="*{cnpj}">
+        </div>
+
+        <div class="form-group">
+            <label for="endereco">Endereço</label>
+            <input type="text" class="form-control" id="endereco" placeholder="Rua Guilherme Lahm, 1778" required th:field="*{endereco}">
+        </div>
+
+        <div class="form-group">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" placeholder="Centro" required th:field="*{bairro}">
+        </div>
+        <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="text" class="form-control" id="telefone" placeholder="51998547102" required
+                   th:field="*{telefone}">
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" class="form-control" id="email" placeholder="jonas@gmail.com" required th:field="*{eMail}">
+        </div>
+
+        <div class="form-group">
+            <label for="Cidade">UF</label>
+            <select th:field="*{Cidade}" class="form-control" id="Cidade">
+                <option th:each="est:${listaCidades}" th:value="${est.id}" th:text="${est.nome}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-danger" href="/administrativo">Voltar</a>
+        </div>
+    </form>
 </div>
 
 <!-- JavaScript (Opcional) -->
