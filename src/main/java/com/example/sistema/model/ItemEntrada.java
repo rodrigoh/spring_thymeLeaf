@@ -15,6 +15,7 @@ public class ItemEntrada implements Serializable {
   private String obs;
   private Double quantidade;
   private Double valor;
+  private Double valorCusto;
   @ManyToOne
   private Produto produto;
   @ManyToOne
@@ -66,5 +67,13 @@ public class ItemEntrada implements Serializable {
 
   public void setEntrada(Entrada entrada) {
     this.entrada = entrada;
+  }
+
+  public Double getValorCusto() {
+    return valorCusto;
+  }
+
+  public void setValorCusto(Double valorCusto) {
+    this.valorCusto = valorCusto;
   }
 }
