@@ -57,7 +57,7 @@ public class CidadeControle {
     if(result.hasErrors()){
       return cadastrar(cidade);
     }
-    //salva o cidade
+    //salva a cidade
     cidadeRepositorio.saveAndFlush(cidade);
     //e em seguida retorna para salvar um novo cidade
     return cadastrar(new Cidade());

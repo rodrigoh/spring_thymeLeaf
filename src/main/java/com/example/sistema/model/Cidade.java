@@ -9,11 +9,10 @@ public class Cidade implements Serializable {
 	private static final Long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String cep;
-	//Tenho muitos estados para um estado
 	@ManyToOne
 	private Estado estado;
 
@@ -24,8 +23,6 @@ public class Cidade implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getNome() {
 		return nome;
